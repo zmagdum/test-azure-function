@@ -1,0 +1,37 @@
+{
+  "bindings": [
+    {
+      "authLevel": "function",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": ["get", "post"]
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    },
+    {
+      "type": "cosmosDB",
+      "direction": "in",
+      "name": "toDoItem",
+      "databaseName": "ToDoList",
+      "collectionName": "Items",
+      "createIfNotExists": false,
+      "connectionStringSetting": "CosmosDbConnectionString",
+      "Id": "{Query.id}",
+      "PartitionKey": "personal"
+    },
+    {
+      "type": "cosmosDB",
+      "direction": "out",
+      "name": "outputDocument",
+      "databaseName": "ToDoList",
+      "collectionName": "Logs",
+      "createIfNotExists": true,
+      "connectionStringSetting": "CosmosDbConnectionString"
+    }
+  ],
+  "scriptFile": "../dist/TodoItem/index.js"
+}
