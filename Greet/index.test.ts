@@ -12,13 +12,13 @@ describe("Greet", () => {
     request = buildHttpRequest();
   });
 
-  test("creates a new document", async () => {
+  test("greets the user by the supplied name", async () => {
     request.query = { name: "Azure fan" };
     await httpTrigger(context, request);
     expect(context.res.body).toMatch(/^Hello, Azure fan/);
   });
 
-  test("creates nothing", async () => {
+  test("provides instructions if no name is given", async () => {
     await httpTrigger(context, request);
     expect(context.res.body).toMatch(/^This HTTP triggered function executed/);
   });
